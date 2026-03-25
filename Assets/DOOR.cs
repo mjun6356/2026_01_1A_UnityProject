@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DOOR : MonoBehaviour
 {
@@ -6,7 +7,16 @@ public class DOOR : MonoBehaviour
     void Start()
     {
 
+
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name == "Door")
+            Destroy(collision.gameObject);
+    }
+
+    
+
 
     // Update is called once per frame
     void Update()

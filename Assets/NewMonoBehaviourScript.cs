@@ -29,7 +29,7 @@ public class playerController : MonoBehaviour
 
     public void OnJump(InputValue value)
     {
-        if (value.isPressed)
+       if (value.isPressed)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
@@ -38,9 +38,6 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
-
         if (moveInput.x > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
@@ -49,9 +46,9 @@ public class playerController : MonoBehaviour
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
-        
 
-        if(moveInput.magnitude >0 )
+
+        if (moveInput.magnitude > 0)
         {
             myAnimator.SetBool("move", true);
 
@@ -62,11 +59,31 @@ public class playerController : MonoBehaviour
         }
 
 
-
-
-
-
         transform.Translate(Vector3.right * moveSpeed * moveInput.x * Time.deltaTime);
+
+
+
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name == "Death")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        else
+        {
+            SceneManager.LoadScene("PlayScene_" + collision.name);
+        }
+
+
+    }
+
+
+
+
+
+
 }
+
+
 
